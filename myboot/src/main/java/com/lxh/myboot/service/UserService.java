@@ -4,6 +4,8 @@ import com.lxh.myboot.bean.ShoppingUser;
 import com.lxh.myboot.repository.User2Repository;
 import com.lxh.myboot.repository.User3Repository;
 import com.lxh.myboot.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +48,10 @@ public class UserService {
     }
 
     public Iterable<ShoppingUser> getSortAll(Sort sort){
+        return user3Repository.findAll(sort);
+    }
+
+    public Page<ShoppingUser> getPageAll(PageRequest sort) {
         return user3Repository.findAll(sort);
     }
 }

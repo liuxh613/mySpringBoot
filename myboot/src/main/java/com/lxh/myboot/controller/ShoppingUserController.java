@@ -2,6 +2,8 @@ package com.lxh.myboot.controller;
 
 import com.lxh.myboot.bean.ShoppingUser;
 import com.lxh.myboot.service.UserService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
@@ -53,5 +55,14 @@ public class ShoppingUserController {
         Order nameOrder = new Order(Direction.DESC,"userName");
         Sort sort = new Sort(nameOrder);
         return userService.getSortAll(sort);
+    }
+
+    @RequestMapping("/getPageAll")
+    public Page<ShoppingUser> getPageAll(int currentPage, int pageSize){
+        //Order idOrder = new Order(Direction.DESC, "userAge");
+        Order nameOrder = new Order(Direction.DESC,"userName");
+        Sort sort = new Sort(nameOrder);
+        PageRequest pageRequest  = new PageRequest(currentPage, pageSize, sort);
+        return userService.getPageAll(pageRequest);
     }
 }
