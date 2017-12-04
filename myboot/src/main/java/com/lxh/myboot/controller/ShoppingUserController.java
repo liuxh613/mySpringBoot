@@ -65,4 +65,9 @@ public class ShoppingUserController {
         PageRequest pageRequest  = new PageRequest(currentPage, pageSize, sort);
         return userService.getPageAll(pageRequest);
     }
+
+    @RequestMapping("/getByNameTem")
+    public ShoppingUser getByNameTem(String name){
+        return userService.getUserByNameTem(name);
+    }
 }

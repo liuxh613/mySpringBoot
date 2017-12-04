@@ -1,6 +1,7 @@
 package com.lxh.myboot.service;
 
 import com.lxh.myboot.bean.ShoppingUser;
+import com.lxh.myboot.dao.ShoppingUserDao;
 import com.lxh.myboot.repository.User2Repository;
 import com.lxh.myboot.repository.User3Repository;
 import com.lxh.myboot.repository.UserRepository;
@@ -23,6 +24,10 @@ public class UserService {
 
     @Resource
     private User3Repository user3Repository;
+
+    @Resource
+    private ShoppingUserDao userDao;
+
 
     @Transactional
     public void save(ShoppingUser user){
@@ -53,5 +58,9 @@ public class UserService {
 
     public Page<ShoppingUser> getPageAll(PageRequest sort) {
         return user3Repository.findAll(sort);
+    }
+
+    public ShoppingUser getUserByNameTem(String name){
+        return userDao.getByName(name);
     }
 }
